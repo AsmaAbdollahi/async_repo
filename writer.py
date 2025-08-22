@@ -10,5 +10,5 @@ class Writer:
             for url, content in results:
             
                 await f.write(f"===== {url} =====\n")
-                await f.write(content[:500])  # فقط ۵۰۰ کاراکتر اول برای کوتاهی
+                await f.write(content[:500])  
                 await f.write("\n\n")
