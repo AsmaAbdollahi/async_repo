@@ -1,0 +1,19 @@
+===== https://google.com =====
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="nl"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="evkyYoxg3HIYasxgXKSfWg">(function(){var _g={kEI:'LpCjaL6ROan0i-gPo6G1wAM',kEXPI:'0,202854,2,3497469,617,442,538661,48791,30022,16105,344796,290044,5241681,36812643,25228681,113800,24468,67540,11740,6754,23880,7033,21
+
+===== https://pl.wikipedia.org =====
+<!DOCTYPE html>
+<html class="client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-enabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-clientpref-1 vector-feature-main-menu-pinned-disabled vector-feature-limited-width-clientpref-1 vector-feature-limited-width-content-disabled vector-feature-custom-font-size-clientpref-1 vector-feature-appearance-pinned-clientpref-1 vector-feature-night-mode-enabled skin-theme-clientpref-day vect
+
+===== https://www.amazon.pl =====
+<!doctype html><html lang="pl-pl" class="a-no-js" data-19ax5a9jf="dingo"><!-- sp:feature:head-start -->
+<head><script>var aPageStart = (new Date()).getTime();</script><meta charset="utf-8"/>
+<!-- sp:end-feature:head-start -->
+<!-- sp:feature:csm:head-open-part1 -->
+
+<!-- sp:end-feature:csm:head-open-part1 -->
+<!-- sp:feature:cs-optimization -->
+<meta http-equiv='x-dns-prefetch-control' content='on'>
+<link rel="dns-prefetch" href="https://images-eu.ssl-images-amazon.com">
+<link rel="dns-prefetch"
+

@@ -15,7 +15,7 @@ async def main():
     results = await fetcher.run()
 
     writer = Writer(output_file)
-    writer.write(results)
+    await writer.write(results)
 
 if __name__ == "__main__":
     asyncio.run(main())
