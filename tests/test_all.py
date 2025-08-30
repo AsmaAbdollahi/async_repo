@@ -1,95 +1,89 @@
 import pytest
-import aiofiles
-from unittest.mock import AsyncMock,patch
-from contextlib import asynccontextmanager
+from unittest.mock import patch
 from fetch import Fetcher
 from writer import Writer
 
 
+# ---------------------------
+# Tests for fetch.py
+# ---------------------------
 
-#  tests for fetch.py file
 @pytest.mark.asyncio
-async def test_fetch_success():
-    urls = ["http://example.com/page1"]
-    fetcher = Fetcher(urls)
+async def test_fetch_success(fake_fetch_response, sample_urls):
+    """
+    Test that Fetcher.fetch works correctly
+    when the HTTP request succeeds.
+    """
+    fetcher = Fetcher([sample_urls[0]])
 
-    @asynccontextmanager
-    async def fake_get(*args, **kwargs):
-        class FakeResponse:
-            async def text(self):
-                return "mocked content"
-        yield FakeResponse()
-
-    
-    with patch("aiohttp.ClientSession.get", side_effect=fake_get):
+    # Patch aiohttp.ClientSession.get with the fake_fetch_response fixture
+    with patch("aiohttp.ClientSession.get", side_effect=fake_fetch_response):
         results = await fetcher.run()
 
-    # Assertion
-    assert results == [(urls[0], "mocked content")]
+    # Assertions
+    assert isinstance(results, list)
+    assert results[0][0] == sample_urls[0]
+    assert results[0][1] == "mocked content"
 
 
 @pytest.mark.asyncio
-async def test_fetch_error():
-    """Test when the fetch request raises an exception"""
-    urls = ["http://example.com/page1"]
-    fetcher = Fetcher(urls)
+async def test_fetch_error(fake_session_error, sample_urls):
+    """
+    Test that Fetcher.fetch correctly handles exceptions
+    and returns an error message.
+    """
+    fetcher = Fetcher([sample_urls[0]])
 
-    fake_session = AsyncMock()
-    # Simulate a network error
-    fake_session.get.side_effect = Exception("Network error")
+    result = await fetcher.fetch(fake_session_error, sample_urls[0])
 
-    result = await fetcher.fetch(fake_session, urls[0])
-
-    assert urls[0] in result[0]
-    assert "Error:" in result[1]
+    # Assertions
+    assert sample_urls[0] in result[0]
+    assert result[1].startswith("Error:")
 
 
 @pytest.mark.asyncio
-async def test_run(monkeypatch):
-    """Test the run() method which should handle multiple URLs"""
-    urls = ["http://example.com/page1", "http://example.com/page2"]
-    fetcher = Fetcher(urls)
-    # Replace the fetch method with a fake one to avoid real HTTP requests
+async def test_run(monkeypatch, sample_urls):
+    """
+    Test Fetcher.run with multiple URLs by mocking fetch()
+    to avoid making real HTTP requests.
+    """
+    fetcher = Fetcher(sample_urls)
+
     async def fake_fetch(session, url):
         return url, f"mocked content for {url}"
 
+    # Replace Fetcher.fetch with fake_fetch
     monkeypatch.setattr(fetcher, "fetch", fake_fetch)
 
     results = await fetcher.run()
 
-    # Ensure both URLs were processed
-    assert len(results) == 2
-    assert results[0][1].startswith("mocked content")
-    assert results[1][1].startswith("mocked content")
+    # Assertions
+    assert len(results) == len(sample_urls)
+    for (url, content), expected_url in zip(results, sample_urls):
+        assert url == expected_url
+        assert content.startswith("mocked content")
 
 
+# ---------------------------
+# Tests for writer.py
+# ---------------------------
 
-# tests for the write.py file
 @pytest.mark.asyncio
-async def test_writer_writes_file(tmp_path):
-    """Test that Writer correctly writes results into a file"""
+async def test_writer_writes_file(temp_output_file, sample_results, read_file_content):
+    """
+    Test that Writer writes results into a file correctly.
+    Verifies that:
+    - Each URL is included in the file.
+    - The content is truncated to 500 characters.
+    """
+    writer = Writer(str(temp_output_file))
+    await writer.write(sample_results)
 
-    # Create a temporary file path
-    output_file = tmp_path / "output.txt"
-
-    # Sample results (url, content)
-    results = [
-        ("http://example.com/page1", "content1" * 100),
-        ("http://example.com/page2", "content2" * 100),
-    ]
-
-    writer = Writer(str(output_file))
-    await writer.write(results)
-
-    # Read back the file content
-    async with aiofiles.open(output_file, "r", encoding="utf-8") as f:
-        content = await f.read()
+    content = await read_file_content(temp_output_file)
 
     # Assertions
-    # Each URL should appear in the file
-    assert "===== http://example.com/page1 =====" in content
-    assert "===== http://example.com/page2 =====" in content
+    for url, text in sample_results:
+        assert f"===== {url} =====" in content
+        assert text[:500] in content
 
-    # Content should be truncated to 500 chars
-    for url, text in results:
-      assert text[:500] in content
+    
