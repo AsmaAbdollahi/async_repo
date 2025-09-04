@@ -5,7 +5,7 @@ from writer import Writer
 
 async def main():
     #  use defined urls and file for saving the content
-    with open("config.json", "r") as f:
+    with open(".eve.example", "r") as f:
         config = json.load(f)
 
     urls = config["urls"]

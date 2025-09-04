@@ -1,0 +1,7 @@
+#URLS
+URL_1=https://google.com
+URL_2=https://pl.wikipedia.org
+URL_3=https://www.amazon.pl
+
+# Output file name
+OUTPUT_FILE=output.txt
