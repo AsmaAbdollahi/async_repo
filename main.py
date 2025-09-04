@@ -1,15 +1,16 @@
 import asyncio
-import json
+import os
+from dotenv import load_dotenv
 from fetch import Fetcher
 from writer import Writer
 
 async def main():
     #  use defined urls and file for saving the content
-    with open(".eve.example", "r") as f:
-        config = json.load(f)
+    # Load env file
+    load_dotenv(".eve.example")
 
-    urls = config["urls"]
-    output_file = config["output_file"]
+    urls = [os.getenv("URL_1"), os.getenv("URL_2"), os.getenv("URL_3")]
+    output_file = os.getenv("OUTPUT_FILE")
 
     fetcher = Fetcher(urls)
     results = await fetcher.run()

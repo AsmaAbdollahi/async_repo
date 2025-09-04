@@ -21,24 +21,23 @@ def sample_results(sample_urls):
     ]
 
 
+import pytest
+import aiofiles
+import os
+
+@pytest.fixture
+def async_file_reader():
+    """Fixture to read file content asynchronously"""
+    async def _reader(path):
+        async with aiofiles.open(path, "r", encoding="utf-8") as f:
+            return await f.read()
+    return _reader
+
+
 @pytest.fixture
 def temp_output_file(tmp_path):
-    """
-    Provide a temporary output file path.
-    Cleanup automatically after the test.
-    """
+    """Fixture to provide temp output file path with cleanup"""
     file_path = tmp_path / "output.txt"
     yield str(file_path)
     if os.path.exists(file_path):
         os.remove(file_path)
-
-
-@pytest.fixture
-async def async_file_reader():
-    """
-    Provide async file reader helper
-    """
-    async def _reader(path):
-        async with aiofiles.open(path, "r", encoding="utf-8") as f:
-            return await f.read()
-    yield _reader

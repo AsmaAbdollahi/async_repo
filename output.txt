@@ -1,19 +1,17 @@
 ===== https://google.com =====
-<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="nl"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="evkyYoxg3HIYasxgXKSfWg">(function(){var _g={kEI:'LpCjaL6ROan0i-gPo6G1wAM',kEXPI:'0,202854,2,3497469,617,442,538661,48791,30022,16105,344796,290044,5241681,36812643,25228681,113800,24468,67540,11740,6754,23880,7033,21
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="nl"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="Ch9XwNJbW8lmBUBg7w_nlQ">(function(){var _g={kEI:'O-i5aNjMMZ2p9u8P9P6uiQ8',kEXPI:'0,202854,2,4037189,78813,16105,344796,247320,42724,5241682,625,30,32768278,29272390,119775,23279,2,74495,6751,23879,9139,4599,328,6226,
 
 ===== https://pl.wikipedia.org =====
-<!DOCTYPE html>
-<html class="client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-enabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-clientpref-1 vector-feature-main-menu-pinned-disabled vector-feature-limited-width-clientpref-1 vector-feature-limited-width-content-disabled vector-feature-custom-font-size-clientpref-1 vector-feature-appearance-pinned-clientpref-1 vector-feature-night-mode-enabled skin-theme-clientpref-day vect
+Please set a user-agent and respect our robot policy https://w.wiki/4wJS. See also T400119.
+
 
 ===== https://www.amazon.pl =====
-<!doctype html><html lang="pl-pl" class="a-no-js" data-19ax5a9jf="dingo"><!-- sp:feature:head-start -->
-<head><script>var aPageStart = (new Date()).getTime();</script><meta charset="utf-8"/>
+<!doctype html><html lang="pl-pl" class="a-no-js a-touch a-tablet" data-19ax5a9jf="turtle"><!-- sp:feature:head-start -->
+<head><script>var aPageStart = (new Date()).getTime();</script><meta name="viewport" content="maximum-scale=5, minimum-scale=0.5, shrink-to-fit=no"/><meta charset="utf-8"/>
 <!-- sp:end-feature:head-start -->
 <!-- sp:feature:csm:head-open-part1 -->
 
+<script type='text/javascript'>var ue_t0=ue_t0||+new Date();</script>
 <!-- sp:end-feature:csm:head-open-part1 -->
-<!-- sp:feature:cs-optimization -->
-<meta http-equiv='x-dns-prefetch-control' content='on'>
-<link rel="dns-prefetch" href="https://images-eu.ssl-images-amazon.com">
-<link rel="dns-prefetch"
+<!-- sp:feature
 
